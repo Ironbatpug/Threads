@@ -44,6 +44,7 @@ class CurrentRunVC: LocationVC {
     func startRun() {
         manager?.startUpdatingLocation()
         startTimer()
+        pauseBtn.setImage(#imageLiteral(resourceName: "pauseButton"), for: .normal)
     }
     
     func startTimer(){
@@ -56,20 +57,30 @@ class CurrentRunVC: LocationVC {
         durationLbl.text = counter.formatTimeDurationToString()
     }
     
-    func endrun() {
-        manager?.stopUpdatingLocation()
-    }
-    
     func calculatePace(time second: Int, miles: Double) -> String {
         pace = Int(Double(second) / miles)
         return pace.formatTimeDurationToString()
     }
     
-    func stopTimer(){
-        
+    func endrun() {
+        manager?.stopUpdatingLocation()
+        //add our object to realm
+    }
+    
+    func pauseRun(){
+        startLocation = nil
+        lastLocation = nil
+        timer.invalidate()
+        manager?.stopUpdatingLocation()
+        pauseBtn.setImage(#imageLiteral(resourceName: "resumeButton"), for: .normal)
     }
     
     @IBAction func pauseRunPressed(_ sender: Any) {
+        if timer.isValid {
+            pauseRun()
+        } else {
+            startRun()
+        }
     }
     
     @objc func endRunSwiped(sender: UIPanGestureRecognizer){
@@ -109,6 +120,7 @@ extension CurrentRunVC: CLLocationManagerDelegate {
             startLocation = locations.first
         } else if let location = locations.last {
             runDistance += lastLocation.distance(from: location)
+            endrun()
             distanceLbl.text = "\(runDistance.metersToMiles(places: 2))"
             if counter > 0 && runDistance > 0 {
                 paceLbl.text = calculatePace(time: counter, miles: runDistance.metersToMiles(places: 2))
