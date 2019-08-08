@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		750ED01122FB3E79005BA697 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750ED01022FB3E79005BA697 /* Extensions.swift */; };
 		750ED01322FB527D005BA697 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750ED01222FB527D005BA697 /* Run.swift */; };
+		750ED01522FC975F005BA697 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750ED01422FC975F005BA697 /* Constants.swift */; };
 		75A790CD22F57BE8004D0906 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A790CC22F57BE8004D0906 /* AppDelegate.swift */; };
 		75A790CF22F57BE8004D0906 /* BeginRunVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A790CE22F57BE8004D0906 /* BeginRunVC.swift */; };
 		75A790D122F57BE8004D0906 /* RunLogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A790D022F57BE8004D0906 /* RunLogVC.swift */; };
@@ -44,6 +45,7 @@
 		3F44499EF31436295711B9CF /* Pods_Threads.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Threads.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		750ED01022FB3E79005BA697 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		750ED01222FB527D005BA697 /* Run.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
+		750ED01422FC975F005BA697 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		75A790C922F57BE8004D0906 /* Threads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Threads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75A790CC22F57BE8004D0906 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75A790CE22F57BE8004D0906 /* BeginRunVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeginRunVC.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		75A790E222F5A1B4004D0906 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				750ED01422FC975F005BA697 /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				75E351E522F8A94C00C9C1E4 /* CurrentRunVC.swift in Sources */,
 				750ED01322FB527D005BA697 /* Run.swift in Sources */,
 				75A790CF22F57BE8004D0906 /* BeginRunVC.swift in Sources */,
+				750ED01522FC975F005BA697 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
