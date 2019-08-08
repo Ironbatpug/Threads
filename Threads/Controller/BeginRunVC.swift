@@ -12,8 +12,14 @@ import MapKit
 class BeginRunVC: LocationVC {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var lastRunView: UIView!
+    @IBOutlet weak var lastRunStackView: UIStackView!
     
-
+    @IBOutlet weak var distanceLbl: UILabel!
+    @IBOutlet weak var paceLbl: UILabel!
+    @IBOutlet weak var lastRunCloseBtn: UIButton!
+    @IBOutlet weak var durationLbl: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationAuthStatus()
@@ -22,6 +28,7 @@ class BeginRunVC: LocationVC {
     
     override func viewWillAppear(_ animated: Bool) {
         manager?.delegate = self
+        getLastRun()
         manager?.startUpdatingLocation()
     }
     
@@ -33,7 +40,28 @@ class BeginRunVC: LocationVC {
         
     }
     
-
+    @IBAction func lastRunCloseButtonPressed(_ sender: Any) {
+        lastRunStackView.isHidden = true
+        lastRunView.isHidden = true
+        lastRunCloseBtn.isHidden = true
+    }
+    
+    func getLastRun(){
+        guard let lastRun = Run.getAllRuns()?.first else {
+            lastRunStackView.isHidden = true
+            lastRunView.isHidden = true
+            lastRunCloseBtn.isHidden = true
+            return
+        }
+        lastRunStackView.isHidden = false
+        lastRunView.isHidden = false
+        lastRunCloseBtn.isHidden = false
+        paceLbl.text = lastRun.pace.formatTimeDurationToString()
+        distanceLbl.text = "\(lastRun.distance.metersToMiles(places: 2)) mi"
+        durationLbl.text = lastRun.duration.formatTimeDurationToString()
+        
+    }
+    
 }
 
 extension BeginRunVC: CLLocationManagerDelegate {
