@@ -102,6 +102,8 @@ class BeginRunVC: LocationVC {
         }
         
         mapView.userTrackingMode = .none
+//        guard let locations = Run.getRun(byId: lastRun.id)?.locations else { return MKPolyline()}
+        
         mapView.setRegion(centerMapOnPrevRout(locations: lastRun.locations), animated: true)
         
         return MKPolyline(coordinates: coordinate, count: coordinate.count)
