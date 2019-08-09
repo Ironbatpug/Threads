@@ -20,10 +20,6 @@ class RunLogCell: UITableViewCell {
     }
     
     func configure(run: Run) {
-        print(run)
-        
-        
-        
         runDurationLbl.text = run.duration.formatTimeDurationToString()
         totalDistanceLbl.text = "\(run.distance.metersToMiles(places: 2)) mi"
         averagePaceLbl.text = run.pace.formatTimeDurationToString()

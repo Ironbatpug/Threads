@@ -66,11 +66,6 @@ class CurrentRunVC: LocationVC {
     
     func endrun() {
         manager?.stopUpdatingLocation()
-        print(pace)
-        print(runDistance)
-
-        print(counter)
-
         Run.addRunToRealm(pace: pace, distance: runDistance, duration: counter, locations: coordinateLocations)
     }
     

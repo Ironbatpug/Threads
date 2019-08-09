@@ -23,13 +23,16 @@ class BeginRunVC: LocationVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationAuthStatus()
-        mapView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         manager?.delegate = self
-        getLastRun()
+        mapView.delegate = self
         manager?.startUpdatingLocation()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setupMapView()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -46,20 +49,34 @@ class BeginRunVC: LocationVC {
         lastRunCloseBtn.isHidden = true
     }
     
-    func getLastRun(){
-        guard let lastRun = Run.getAllRuns()?.first else {
+    func setupMapView(){
+        if let overlay = addLastRunToMap(){
+            if mapView.overlays.count > 0 {
+                mapView.removeOverlays(mapView.overlays)
+            }
+            mapView.add(overlay)
+            lastRunStackView.isHidden = false
+            lastRunView.isHidden = false
+            lastRunCloseBtn.isHidden = false
+        } else {
             lastRunStackView.isHidden = true
             lastRunView.isHidden = true
             lastRunCloseBtn.isHidden = true
-            return
         }
-        lastRunStackView.isHidden = false
-        lastRunView.isHidden = false
-        lastRunCloseBtn.isHidden = false
+    }
+    
+    func addLastRunToMap() ->MKPolyline? {
+        guard  let lastRun = Run.getAllRuns()?.first else { return nil }
         paceLbl.text = lastRun.pace.formatTimeDurationToString()
         distanceLbl.text = "\(lastRun.distance.metersToMiles(places: 2)) mi"
         durationLbl.text = lastRun.duration.formatTimeDurationToString()
         
+        var coordinate = [CLLocationCoordinate2D]()
+        for location in lastRun.locations {
+            coordinate.append(CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+        }
+        
+        return MKPolyline(coordinates: coordinate, count: coordinate.count)
     }
     
 }
@@ -72,4 +89,21 @@ extension BeginRunVC: CLLocationManagerDelegate {
             mapView.userTrackingMode = .follow
         }
     }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let polyline = overlay as! MKPolyline
+        let renderer = MKPolylineRenderer(polyline: polyline)
+        renderer.strokeColor = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
+        renderer.lineWidth = 4
+        return renderer
+    }
 }
+
+
+
+
+
+
+
+
+
