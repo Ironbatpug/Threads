@@ -35,6 +35,8 @@
 		75A7910822F5A27A004D0906 /* Montserrat-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75A790F622F5A27A004D0906 /* Montserrat-Italic.ttf */; };
 		75A7910922F5A27A004D0906 /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75A790F722F5A27A004D0906 /* Montserrat-BoldItalic.ttf */; };
 		75B1B7AC22FCA05100B05F53 /* RunCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B1B7AB22FCA05100B05F53 /* RunCell.swift */; };
+		75B1B7AE22FDE7A200B05F53 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B1B7AD22FDE7A200B05F53 /* Location.swift */; };
+		75B1B7B022FDEBA700B05F53 /* RealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B1B7AF22FDEBA700B05F53 /* RealmConfig.swift */; };
 		75E351E522F8A94C00C9C1E4 /* CurrentRunVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E351E422F8A94C00C9C1E4 /* CurrentRunVC.swift */; };
 		75E351E722F8ABCC00C9C1E4 /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E351E622F8ABCC00C9C1E4 /* LocationVC.swift */; };
 		EC9D7936B7EE201C80FFB427 /* Pods_Threads.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F44499EF31436295711B9CF /* Pods_Threads.framework */; };
@@ -74,6 +76,8 @@
 		75A790F622F5A27A004D0906 /* Montserrat-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Italic.ttf"; sourceTree = "<group>"; };
 		75A790F722F5A27A004D0906 /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
 		75B1B7AB22FCA05100B05F53 /* RunCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunCell.swift; sourceTree = "<group>"; };
+		75B1B7AD22FDE7A200B05F53 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		75B1B7AF22FDEBA700B05F53 /* RealmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConfig.swift; sourceTree = "<group>"; };
 		75E351E422F8A94C00C9C1E4 /* CurrentRunVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentRunVC.swift; sourceTree = "<group>"; };
 		75E351E622F8ABCC00C9C1E4 /* LocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				750ED01422FC975F005BA697 /* Constants.swift */,
+				75B1B7AF22FDEBA700B05F53 /* RealmConfig.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				750ED01222FB527D005BA697 /* Run.swift */,
+				75B1B7AD22FDE7A200B05F53 /* Location.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -345,11 +351,13 @@
 			files = (
 				75E351E722F8ABCC00C9C1E4 /* LocationVC.swift in Sources */,
 				750ED01122FB3E79005BA697 /* Extensions.swift in Sources */,
+				75B1B7AE22FDE7A200B05F53 /* Location.swift in Sources */,
 				75A790D122F57BE8004D0906 /* RunLogVC.swift in Sources */,
 				75B1B7AC22FCA05100B05F53 /* RunCell.swift in Sources */,
 				75A790CD22F57BE8004D0906 /* AppDelegate.swift in Sources */,
 				75E351E522F8A94C00C9C1E4 /* CurrentRunVC.swift in Sources */,
 				750ED01322FB527D005BA697 /* Run.swift in Sources */,
+				75B1B7B022FDEBA700B05F53 /* RealmConfig.swift in Sources */,
 				75A790CF22F57BE8004D0906 /* BeginRunVC.swift in Sources */,
 				750ED01522FC975F005BA697 /* Constants.swift in Sources */,
 			);

@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import RealmSwift
 
 class CurrentRunVC: LocationVC {
     
@@ -22,9 +23,10 @@ class CurrentRunVC: LocationVC {
     var lastLocation: CLLocation!
     var timer = Timer()
     
-    var counter = 0
-    var runDistance = 0.0
-    var pace = 0
+    fileprivate var coordinateLocations = List<Location>()
+    fileprivate var counter = 0
+    fileprivate var runDistance = 0.0
+    fileprivate var pace = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +66,12 @@ class CurrentRunVC: LocationVC {
     
     func endrun() {
         manager?.stopUpdatingLocation()
-        Run.addRunToRealm(pace: pace, distance: runDistance, duration: counter)
+        print(pace)
+        print(runDistance)
+
+        print(counter)
+
+        Run.addRunToRealm(pace: pace, distance: runDistance, duration: counter, locations: coordinateLocations)
     }
     
     func pauseRun(){
@@ -93,7 +100,7 @@ class CurrentRunVC: LocationVC {
                     sliderView.center.x = sliderView.center.x + translation.x
                 } else if sliderView.center.x >= (swipeBGImageView.center.x + maxAdjust) {
                     sliderView.center.x = swipeBGImageView.center.x + maxAdjust
-                    
+                    endrun()
                     dismiss(animated: true, completion: nil)
                 } else {
                     sliderView.center.x = swipeBGImageView.center.x - maxAdjust
@@ -120,7 +127,8 @@ extension CurrentRunVC: CLLocationManagerDelegate {
             startLocation = locations.first
         } else if let location = locations.last {
             runDistance += lastLocation.distance(from: location)
-            endrun()
+            let newlocation = Location(latitude: Double(lastLocation.coordinate.latitude), longitude: Double(lastLocation.coordinate.longitude))
+            coordinateLocations.insert(newlocation, at: 0)
             distanceLbl.text = "\(runDistance.metersToMiles(places: 2))"
             if counter > 0 && runDistance > 0 {
                 paceLbl.text = calculatePace(time: counter, miles: runDistance.metersToMiles(places: 2))
